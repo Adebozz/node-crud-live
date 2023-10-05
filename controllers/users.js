@@ -44,3 +44,6 @@ exports.createUser = (req, res, next) => {
       console.log(err);
     });
 };
+
+//update user
+exports.updateUser = (req, res, next) => {
