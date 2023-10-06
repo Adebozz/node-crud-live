@@ -43,7 +43,7 @@ exports.createUser = (req, res, next) => {
     .catch((err) => {
       console.log(err);
     });
-};HJ
+};
 
 //update user
 exports.updateUser = (req, res, next) => {
@@ -66,4 +66,21 @@ exports.updateUser = (req, res, next) => {
 };
 
 //delete user
-exports.deleteUser = (req, res, next) => {};
+exports.deleteUser = (req, res, next) => {
+    const userId = req.params.userId;
+    User.findByPk(userId)
+        .then(user => {
+            if (!user) {
+                return res.status(404).json({ message: 'User not found!'});
+            }
+            return User.destroy({
+                where: {
+                    id: userId
+                }
+            });
+        })
+        .then(result => {
+            res.status(200).json({ message: 'User deltes!' });
+        })
+        .catch(err => console.log(err));
+};
