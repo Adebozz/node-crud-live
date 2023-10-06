@@ -43,7 +43,7 @@ exports.createUser = (req, res, next) => {
     .catch((err) => {
       console.log(err);
     });
-};
+};HJ
 
 //update user
 exports.updateUser = (req, res, next) => {
